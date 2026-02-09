@@ -142,21 +142,21 @@ The system successfully separated user contexts, learning distinct optimal polic
 
 ## Strengths
 
-✅ Contextual separation significantly improves learning efficiency
-✅ Hyperparameters strongly influence convergence speed and stability
-✅ Probabilistic exploration produces smoother learning behavior  
-✅ High classification accuracy (88.12%) ensures reliable context prediction   
+- Contextual separation significantly improves learning efficiency
+- Hyperparameters strongly influence convergence speed and stability
+- Probabilistic exploration produces smoother learning behavior  
+- High classification accuracy (88.12%) ensures reliable context prediction   
 
 
 ---
 
 ## Limitations
 
-⚠️ **Classification Noise:** 11.88% misclassification rate introduces contextual errors that may affect reward optimality  
-⚠️ **Limited Context Scale:** System tested with only 3 user contexts; scalability to larger populations uncertain  
-⚠️ **Reward Distribution:** Reward distributions may favor certain algorithms; more diverse reward structures would strengthen conclusions  
-⚠️ **Simulation Length:** T=10,000 may be insufficient for convergence with high exploration rates  
-⚠️ **Stationarity Assumption:** Algorithms assume stationary reward distributions; real-world preferences may drift over time  
+**Classification Noise:** 11.88% misclassification rate introduces contextual errors that may affect reward optimality  
+**Limited Context Scale:** System tested with only 3 user contexts; scalability to larger populations uncertain  
+**Reward Distribution:** Reward distributions may favor certain algorithms; more diverse reward structures would strengthen conclusions  
+**Simulation Length:** T=10,000 may be insufficient for convergence with high exploration rates  
+**Stationarity Assumption:** Algorithms assume stationary reward distributions; real-world preferences may drift over time  
 
 ---
 
