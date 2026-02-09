@@ -1,74 +1,66 @@
-# Student Submission Checklist (Lab 3)
+Contextual Bandit-Based Personalized Recommendation System
 
-Before submitting your Lab 3 assignment, ensure that **all items below are completed**. Submissions that do not follow this checklist may receive partial or no credit.
+This project implements and evaluates multiple contextual multi-armed bandit strategies for personalized news recommendation. A supervised learning model is first used to classify users into contextual groups followed by reinforcement learning policies that adaptively select optimal content categories to maximize user reward.
 
----
+Problem Setup
 
-## 🔹 Repository and Branching
+Users are represented through behavioral and demographic features.
+A multi-class classifier predicts the user context which is then used to maintain independent reward models for each user group.
 
-* [ ] The repository is correctly created on GitHub.
-* [ ] All work is committed to **exactly one branch** named
-  `firstname_U20230xxx`.
-* [ ] **No work is pushed to `master`**.
-* [ ] The correct branch is pushed to GitHub.
+Each context applies a contextual bandit strategy to select from multiple news categories (arms) receiving stochastic rewards based on user preferences.
 
----
+⚙️ Methodology
+1. User Context Classification
 
-## 🔹 Notebook Submission
+A Gradient Boosting Classifier was trained to identify user groups based on input features.
 
-* [ ] Exactly **one** Jupyter Notebook (`.ipynb`) is submitted.
-* [ ] The notebook is placed at the **root of the repository**.
-* [ ] The notebook is named **exactly**:
-  `lab3_results_<roll_number>.ipynb`.
-* [ ] The notebook runs **top to bottom without errors**.
-* [ ] All outputs (plots, tables, metrics) are visible in the notebook.
+Classification Accuracy: 88.12%
 
----
+2. Contextual Bandit Strategies
 
-## 🔹 Sampler Usage
+Three reinforcement learning approaches were implemented:
 
-* [ ] The provided `sampler` package is used **without modification**.
-* [ ] The sampler is initialized using your correct roll number `i`.
-* [ ] Rewards are obtained **only** via `sampler.sample(j)`.
-* [ ] No hard-coded or synthetic rewards are used.
+Epsilon-Greedy
 
----
+Upper Confidence Bound (UCB)
 
-## 🔹 Contextual Bandit Implementation
+SoftMax Action Selection
 
-* [ ] User category is treated as the **context**.
-* [ ] News category is treated as the **bandit arm**.
-* [ ] The arm index mapping follows the specification in the lab handout.
-* [ ] All three algorithms are implemented:
+Each context maintained independent action-value estimates to learn optimal category selections over time.
 
-  * Epsilon-Greedy
-  * Upper Confidence Bound (UCB)
-  * SoftMax
+📊 Experimental Results
+🔹 Epsilon-Greedy
 
----
+Small exploration rates (ε = 0.01) achieved the highest long-term rewards
+Moderate exploration accelerated early learning for some users
+High ε consistently reduced steady-state performance
 
-## 🔹 Evaluation and Plots
+🔹 UCB
 
-* [ ] Classification accuracy is reported on `test_users.csv`.
-* [ ] Reinforcement learning simulation is run for **T = 10,000 steps**.
-* [ ] Plots include:
+Smaller exploration constants converged faster
+Larger constants induced prolonged exploration
+All configurations achieved similar long-term rewards
 
-  * Average Reward vs. Time (per context)
-  * Hyperparameter comparison plots
-* [ ] All plots have labeled axes, legends, and titles.
+🔹 SoftMax
 
----
+Smoothest learning curves
+Stable convergence
+Slightly lower final rewards compared to greedy strategies
 
-## 🔹 README.md Requirements
+Distinct reward trajectories across user contexts lead to effective personalization.
 
-* [ ] README.md is present at the repository root.
-* [ ] It explains the overall approach and design decisions.
-* [ ] It summarizes key results and observations.
-* [ ] It includes clear instructions to reproduce the experiments.
-* [ ] All external references (if any) are properly cited.
+📈 Key Insights
 
----
+Contextual separation significantly improves learning efficiency
 
-## Important Note
+Hyperparameters strongly influence convergence speed and stability
 
-> Submissions that do not follow the specified branch name, notebook naming convention, or sampler usage rules may not be evaluated.
+Exploitation-heavy strategies yield higher long-term rewards
+
+Probabilistic exploration produces smoother learning behavior
+
+Accurate user classification is crucial for reliable contextual policies
+
+✅ Conclusion
+
+The study demonstrates that contextual multi-armed bandits can effectively personalize recommendations by adapting to user-specific reward distributions. While greedy strategies maximize long-term reward, controlled exploration enables faster learning and robustness. Combining supervised context prediction with reinforcement learning provides a powerful framework for more efficient and adaptive decision making systems.
